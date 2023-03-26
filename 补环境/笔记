@@ -1,0 +1,56 @@
+window.byted_acrawler.sign
+
+检测环境
+    报错：TypeError: Cannot read properties of undefined (reading 'sign')
+    代码： "undefined" != typeof exports ? exports : void 0,
+    typeof exports
+
+检测长度：
+    报错：TypeError: Cannot read properties of undefined (reading 'length')
+    location.protocol = 'https:'
+    navigator = {
+        userAgent:'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36'
+    }
+
+
+环境，根据入口搜索 try catch:吐出需要补什么环境
+
+
+
+
+jsdom:
+    npm insrall jsdom --save
+基本使用
+    const jsdom = require("jsdom");
+    const { JSDOM } = jsdom;
+    const dom = new JSDOM(`<!DOCTYPE html><p>Hello world</p>`);
+    title = dom.window.document.querySelector("p").textContent
+    console.log(title)
+
+添加参数形式
+    const dom = new JSDOM(``, {
+      url: "http://q.10jqka.com.cn/",
+      referrer: "http://q.10jqka.com.cn/",
+      contentType: "text/html",
+      includeNodeLocations: true,
+      storageQuota: 10000000
+    });
+
+
+
+
+吐环境脚本
+    Proxy
+
+    document Symbol(Symbol.toStringTag) string
+    hook:
+        var object_toStrint = Object.prototype.toString()
+        Object.prototype.toString = function (){
+            let _xxx = object_toStrint.call(this,arguments);
+            console.log(this)
+            if(this.constructor.name == 'Document'){
+                return['object HTMLDocument']
+            }
+        }
+
+
